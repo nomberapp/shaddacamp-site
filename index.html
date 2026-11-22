@@ -262,6 +262,18 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
 .pfig.inday{margin:4px 0 14px;max-width:520px}
 .foodgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.foodgrid figure{margin:0}.foodgrid figure>img{width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover;border-radius:14px;display:block;margin:0!important}.foodgrid figcaption{font-size:14px;font-weight:600;margin-top:6px}
 .paymodal{position:fixed;inset:0;z-index:80;background:rgba(3,13,31,.6);display:grid;place-items:center;padding:16px;overflow:auto}.paybox{position:relative;background:var(--bg);color:var(--ink);border-radius:18px;padding:26px 22px;width:min(440px,100%);box-shadow:0 20px 60px rgba(0,0,0,.35)}.paybox h3{margin:0 0 6px;font-size:21px}.paysum{font-size:14.5px;color:var(--mute);margin:0 0 16px;line-height:1.55}.paysum b{color:var(--ink)}.payx{position:absolute;top:10px;right:12px;border:0;background:none;font-size:28px;line-height:1;color:var(--mute);cursor:pointer}.payfoot{font-size:12px;color:var(--mute);margin:12px 0 0;text-align:center}.paybox .mysr-form{margin:0 auto}
+.whoopts{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.whoopts legend{grid-column:1/-1;float:left;width:100%;padding:0}
+.whoopt{position:relative;margin:0;cursor:pointer;display:block;font-weight:400}
+.whoopt input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.whoopt span{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;height:100%}
+.whoopt b{font-size:15.5px;color:var(--ink)}.whoopt small{font-size:13px;color:var(--mute)}
+.whoopt input:checked+span{border-color:#c9972b;background:light-dark(#fdf8ec,#1d1a10);box-shadow:0 0 0 3px light-dark(#f3e4bf,#3a3018)}
+.whoopt input:focus-visible+span{outline:3px solid #c9972b;outline-offset:2px}
+.gcount{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1.5px solid var(--line);border-radius:14px;padding:12px 12px 12px 16px}
+.gcount label{margin:0;display:flex;flex-direction:column;gap:2px;font-weight:400}.gcount label b{font-size:15.5px}.gcount label small{font-size:13px;color:var(--mute)}
+@media(max-width:700px){.whoopts{grid-template-columns:1fr}.gcount .stepper{grid-template-columns:42px 48px 42px}}
+.gcount label{min-width:0;flex:1}.gcount .stepper{flex:none}
 </style>
 <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.15.0/moyasar.css">
 <script src="https://cdn.moyasar.com/mpf/1.15.0/moyasar.js" defer></script>
@@ -656,15 +668,14 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
 
       <section class="bstep">
         <div class="bhead"><span class="bnum">3</span><h2>Who's coming</h2></div>
-        <div class="gline">
-          <div><label for="guests">Number of guests</label>
-            <div class="stepper"><button type="button" data-step="-1" aria-label="Fewer guests">&minus;</button><input id="guests" type="number" min="1" max="20" value="2" inputmode="numeric" required><button type="button" data-step="1" aria-label="More guests">+</button></div>
-          </div>
-          <div><span class="lbl" aria-hidden="true">This booking is for</span><fieldset class="seg"><legend class="sr">This booking is for</legend>
-            <label><input type="radio" name="who" value="me"><span>Just me</span></label>
-            <label><input type="radio" name="who" value="meplus" checked><span>Me and others</span></label>
-            <label><input type="radio" name="who" value="others"><span>Someone else</span></label>
-          </fieldset></div>
+        <fieldset class="whoopts"><legend class="lbl">Who is this booking for?</legend>
+          <label class="whoopt"><input type="radio" name="who" value="me"><span><b>Just me</b><small>I'm travelling alone</small></span></label>
+          <label class="whoopt"><input type="radio" name="who" value="meplus" checked><span><b>Me and others</b><small>I'm coming with family or friends</small></span></label>
+          <label class="whoopt"><input type="radio" name="who" value="others"><span><b>Someone else</b><small>I'm booking for other people</small></span></label>
+        </fieldset>
+        <div class="gcount" id="gcount">
+          <label for="guests"><b>Number of guests</b><small id="gcnote">Including you</small></label>
+          <div class="stepper"><button type="button" data-step="-1" aria-label="Fewer guests">&minus;</button><input id="guests" type="number" min="1" max="20" value="2" inputmode="numeric" required><button type="button" data-step="1" aria-label="More guests">+</button></div>
         </div>
       </section>
 
@@ -851,6 +862,7 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
   const blocked=d=>{const k=ymd(d),m=d.getMonth();if(m===6||m===7)return 'July and August';if(RAMADAN.some(([a,b])=>k>=a&&k<=b))return 'Ramadan';for(const s of DEPS){const a=new Date(s+'T00:00'),b=new Date(a);b.setDate(b.getDate()+5);if(d>=a&&d<b)return 'a Shadda departure week'}return ''};
   const stayOk=()=>{if(!cin.value)return '';const a=new Date(cin.value+'T00:00');for(let i=0;i<+nights.value;i++){const d=new Date(a);d.setDate(d.getDate()+i);const r=blocked(d);if(r)return 'The camp is not open for stays on '+d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' ('+r+'). Please choose other dates.'}return ''};
   const pk=()=>document.querySelector('input[name=pkg]:checked').value;
+  const syncWho=()=>{const w=document.querySelector('input[name=who]:checked').value,gc=document.getElementById('gcount'),nt=document.getElementById('gcnote');gc.hidden=(w==='me');nt.textContent=w==='others'?'The people travelling':'Including you';guests.min=w==='meplus'?2:1;if(w==='meplus'&&+guests.value<2)guests.value=2};
   const syncPkg=()=>{const st=pk()==='stay';depwrap.hidden=st;staywrap.hidden=!st;guests.max=st?21:20;if(+guests.value>+guests.max)guests.value=guests.max};
 
   const fmt=n=>'SAR '+n.toLocaleString('en-US');
@@ -878,7 +890,7 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
     mbtot.textContent=fmt(tot);mbsub.textContent=gl+(p==='stay'?`, ${nights.value} ${+nights.value===1?'night':'nights'}`:'');
   };
   DEPS.forEach(v=>{const a=new Date(v+'T00:00'),e=new Date(a);e.setDate(e.getDate()+5);const c=document.createElement('button');c.type='button';c.className='chip';c.setAttribute('role','radio');c.setAttribute('aria-checked','false');c.dataset.v=v;c.innerHTML=`<b>${dfmt(a,{day:'numeric',month:'short'})} to ${dfmt(e,{day:'numeric',month:'short'})}</b><span>Sat to Thu, ${a.getFullYear()}</span>`;c.addEventListener('click',()=>{date.value=v;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-checked',x===c?'true':'false'));date.removeAttribute('aria-invalid');clrErr();upd()});chips.appendChild(c)});
-  document.querySelectorAll('.stepper button').forEach(bt=>bt.addEventListener('click',()=>{const v=Math.min(+guests.max,Math.max(1,(+guests.value||1)+(+bt.dataset.step)));guests.value=v;if(who()==='me'&&v>1)document.querySelector('input[name=who][value=meplus]').checked=true;render()}));
+  document.querySelectorAll('.stepper button').forEach(bt=>bt.addEventListener('click',()=>{const v=Math.min(+guests.max,Math.max(+guests.min||1,(+guests.value||1)+(+bt.dataset.step)));guests.value=v;if(who()==='me'&&v>1)document.querySelector('input[name=who][value=meplus]').checked=true;render()}));
   [date,guests,cin,nights].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd)});
   document.querySelectorAll('input[name=pkg]').forEach(r=>r.addEventListener('change',()=>{syncPkg();render()}));
   document.querySelectorAll('[data-pkg]').forEach(a=>a.addEventListener('click',()=>{const r=document.querySelector(`input[name=pkg][value=${a.dataset.pkg}]`);if(r){r.checked=true;upd()}}));
@@ -916,8 +928,9 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
   };
   glist.addEventListener('change',e=>{if(e.target.classList.contains('gt'))render()});
   guests.addEventListener('change',render);
-  document.querySelectorAll('input[name=who]').forEach(r=>r.addEventListener('change',()=>{if(who()!=='me'&&+guests.value<2&&who()==='meplus')guests.value=2;render()}));
+  document.querySelectorAll('input[name=who]').forEach(r=>r.addEventListener('change',()=>{syncWho();if(who()!=='me'&&+guests.value<2&&who()==='meplus')guests.value=2;render()}));
   nameIn.addEventListener('input',()=>{if(who()!=='others'){const f=glist.querySelector('#gn0');if(f&&(!f.value||f.dataset.auto)){f.value=nameIn.value;f.dataset.auto=1}}});
+  syncWho();
   render();
 
   const cc=document.getElementById('cc'),ph=document.getElementById('phone');
