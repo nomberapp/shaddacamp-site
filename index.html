@@ -274,6 +274,19 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
 .gcount label{margin:0;display:flex;flex-direction:column;gap:2px;font-weight:400}.gcount label b{font-size:15.5px}.gcount label small{font-size:13px;color:var(--mute)}
 @media(max-width:700px){.whoopts{grid-template-columns:1fr}.gcount .stepper{grid-template-columns:42px 48px 42px}}
 .gcount label{min-width:0;flex:1}.gcount .stepper{flex:none}
+.pkc{display:grid;grid-template-columns:1fr auto;column-gap:12px;row-gap:6px;align-items:start}
+.pkc .pkt{grid-column:1;padding-right:0}.pkc .pkp{grid-column:2;grid-row:1;margin:0;text-align:right;font-size:16.5px;white-space:nowrap}
+.pkc .pkd{grid-column:1/-1}
+.pkc input{position:absolute;top:auto;bottom:14px;right:14px}
+.pkc{padding-bottom:16px;padding-right:16px}
+@media(min-width:901px){.pkc{grid-template-columns:1fr}.pkc .pkp{grid-column:1;grid-row:auto;text-align:left;order:3}.pkc .pkd{order:2}}
+.chip b{white-space:nowrap}
+.tel{grid-template-columns:minmax(0,7.6em) minmax(0,1fr)!important}
+@media(max-width:560px){.guest .row.r2{grid-template-columns:1fr!important}}
+.guest>div:empty{display:none}
+.optl{font-weight:400;color:var(--mute)}
+.snone{color:#a9b8d4;font-weight:400}
+@media(max-width:900px){.bstep{padding:20px 18px;gap:14px}.bkform{gap:14px}}
 </style>
 <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.15.0/moyasar.css">
 <script src="https://cdn.moyasar.com/mpf/1.15.0/moyasar.js" defer></script>
@@ -644,9 +657,9 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
       <section class="bstep">
         <div class="bhead"><span class="bnum">1</span><h2>Choose your experience</h2></div>
         <fieldset class="pkgs" id="pkgset"><legend class="sr">Experience</legend>
-          <label class="pkc"><input type="radio" name="pkg" value="hotel" checked><span class="pkt">Shadda week with hotel</span><span class="pkd">Six days at camp, plus a 5-star hotel night in Riyadh before and after.</span><span class="pkp">SAR 24,375 <small>per person</small></span></label>
-          <label class="pkc"><input type="radio" name="pkg" value="camp"><span class="pkt">Shadda week, camp only</span><span class="pkd">Six days at camp. Meet us at the hotel in Riyadh on Saturday morning.</span><span class="pkp">SAR 22,375 <small>per person</small></span></label>
-          <label class="pkc"><input type="radio" name="pkg" value="stay"><span class="pkt">Camp stay</span><span class="pkd">A night or more at camp between departures, with three meals, snacks and qahwa.</span><span class="pkp">SAR 4,775 <small>per bed, per night</small></span></label>
+          <label class="pkc"><input type="radio" name="pkg" value="hotel" checked><span class="pkt">Shadda week with hotel</span><span class="pkp">SAR 24,375 <small>per person</small></span><span class="pkd">Six days at camp, plus a 5-star hotel night in Riyadh before and after.</span></label>
+          <label class="pkc"><input type="radio" name="pkg" value="camp"><span class="pkt">Shadda week, camp only</span><span class="pkp">SAR 22,375 <small>per person</small></span><span class="pkd">Six days at camp. Meet us at the hotel in Riyadh on Saturday morning.</span></label>
+          <label class="pkc"><input type="radio" name="pkg" value="stay"><span class="pkt">Camp stay</span><span class="pkp">SAR 4,775 <small>per bed, per night</small></span><span class="pkd">A night or more at camp between departures, with three meals, snacks and qahwa.</span></label>
         </fieldset>
       </section>
 
@@ -681,22 +694,20 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
 
       <section class="bstep">
         <div class="bhead"><span class="bnum">4</span><h2>Your contact details</h2></div>
-        <div class="row">
-          <div><label for="name">Your full name</label><input id="name" autocomplete="name" required></div>
-          <div><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
-        </div>
-        <div class="telw"><label for="phone">WhatsApp number</label><div class="tel"><select id="cc" aria-label="Country code"><option value="966">+966 Saudi Arabia</option><option value="971">+971 UAE</option><option value="965">+965 Kuwait</option><option value="974">+974 Qatar</option><option value="973">+973 Bahrain</option><option value="968">+968 Oman</option><option value="1">+1 USA / Canada</option><option value="44">+44 UK</option><option value="49">+49 Germany</option><option value="33">+33 France</option><option value="39">+39 Italy</option><option value="34">+34 Spain</option><option value="31">+31 Netherlands</option><option value="41">+41 Switzerland</option><option value="61">+61 Australia</option><option value="91">+91 India</option><option value="92">+92 Pakistan</option><option value="20">+20 Egypt</option><option value="962">+962 Jordan</option><option value="90">+90 Turkey</option><option value="86">+86 China</option><option value="81">+81 Japan</option><option value="82">+82 South Korea</option><option value="7">+7 Russia</option><option value="">Other: type full number</option></select><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="5x xxx xxxx" required></div><p class="bnote" style="margin-top:6px">We confirm your booking on WhatsApp.</p></div>
+        <div><label for="name">Your full name</label><input id="name" autocomplete="name" required></div>
+        <div class="telw"><label for="phone">WhatsApp number</label><div class="tel"><select id="cc" aria-label="Country code"><option value="966">+966 SA</option><option value="971">+971 AE</option><option value="965">+965 KW</option><option value="974">+974 QA</option><option value="973">+973 BH</option><option value="968">+968 OM</option><option value="1">+1 US</option><option value="44">+44 GB</option><option value="49">+49 DE</option><option value="33">+33 FR</option><option value="39">+39 IT</option><option value="34">+34 ES</option><option value="31">+31 NL</option><option value="41">+41 CH</option><option value="61">+61 AU</option><option value="91">+91 IN</option><option value="92">+92 PK</option><option value="20">+20 EG</option><option value="962">+962 JO</option><option value="90">+90 TR</option><option value="86">+86 CN</option><option value="81">+81 JP</option><option value="82">+82 KR</option><option value="7">+7 RU</option><option value="">Other</option></select><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="5x xxx xxxx" required></div><p class="bnote" style="margin-top:6px">We confirm your booking on WhatsApp.</p></div>
+        <div><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
       </section>
 
       <section class="bstep">
         <div class="bhead"><span class="bnum">5</span><h2>Guest details</h2></div>
-        <p class="bnote">Each guest needs an ID for desert permits and insurance: a Saudi national ID, an Iqama, or a passport for visitors. Guests under 18 travel with a parent or guardian in the same booking.</p>
+        <p class="bnote">We need each guest's ID for desert permits and insurance. Guests under 18 travel with a parent or guardian in the same booking.</p>
         <div id="glist"></div>
       </section>
 
       <section class="bstep">
-        <div class="bhead"><span class="bnum">6</span><h2>Anything else</h2></div>
-        <div><label for="msg">Anything we should know?</label><textarea id="msg" rows="3" placeholder="Dietary needs, questions, special occasions"></textarea></div>
+        <div class="bhead"><span class="bnum">6</span><h2>Notes and confirmation</h2></div>
+        <div><label for="msg">Anything we should know? <span class="optl">(optional)</span></label><textarea id="msg" rows="3" placeholder="Dietary needs, questions, special occasions"></textarea></div>
         <label class="chk"><input type="checkbox" id="agree" required><span>I have read the <a href="#terms" data-pol="terms">terms and conditions</a>, <a href="#cancellation" data-pol="cancellation">cancellation policy</a>, <a href="#safety" data-pol="safety">safety guidelines</a> and <a href="#conduct" data-pol="conduct">guest conduct rules</a>.</span></label>
       </section>
     </form>
@@ -874,14 +885,14 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
     let h=row('Experience',PNAME[p]),tot,pay;
     if(p==='stay'){
       const n=+nights.value,a=cin.value?new Date(cin.value+'T00:00'):null;
-      let dates='Choose a check-in date';
+      let dates='<span class="snone">Not chosen yet</span>';
       if(a){const o=new Date(a);o.setDate(o.getDate()+n);dates=dfmt(a,{day:'numeric',month:'short'})+' to '+dfmt(o,{day:'numeric',month:'short',year:'numeric'})}
       tot=g*n*PRICES.stay;
       h+=row('Dates',dates)+row('Nights',n)+row('Guests',gl)+row('Price',fmt(PRICES.stay)+' per bed, per night');
       pay='Pay online now to book your beds. We confirm within two working days and send you the camp location.';
       const w=stayOk();if(w)pay+=`</p><p class="swarn">${w}`;
     }else{
-      const m=date.value?date.options[date.selectedIndex].text:'Choose a departure';
+      const m=date.value?date.options[date.selectedIndex].text:'<span class="snone">Not chosen yet</span>';
       tot=g*PRICES[p];
       h+=row('Departure',m)+row('Guests',gl+(who()==='others'?', for someone else':''))+row('Price',fmt(PRICES[p])+' per person');
       pay=`Pay a deposit of <b>${fmt(Math.round(tot*0.3))}</b> (30%) online now to hold your place. The balance is due 30 days before departure.`;
@@ -889,7 +900,7 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
     sum.innerHTML=h+`<div class="stot"><span>Total</span><b>${fmt(tot)}</b></div><p class="spay">${pay}</p>`;
     mbtot.textContent=fmt(tot);mbsub.textContent=gl+(p==='stay'?`, ${nights.value} ${+nights.value===1?'night':'nights'}`:'');
   };
-  DEPS.forEach(v=>{const a=new Date(v+'T00:00'),e=new Date(a);e.setDate(e.getDate()+5);const c=document.createElement('button');c.type='button';c.className='chip';c.setAttribute('role','radio');c.setAttribute('aria-checked','false');c.dataset.v=v;c.innerHTML=`<b>${dfmt(a,{day:'numeric',month:'short'})} to ${dfmt(e,{day:'numeric',month:'short'})}</b><span>Sat to Thu, ${a.getFullYear()}</span>`;c.addEventListener('click',()=>{date.value=v;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-checked',x===c?'true':'false'));date.removeAttribute('aria-invalid');clrErr();upd()});chips.appendChild(c)});
+  DEPS.forEach(v=>{const a=new Date(v+'T00:00'),e=new Date(a);e.setDate(e.getDate()+5);const c=document.createElement('button');c.type='button';c.className='chip';c.setAttribute('role','radio');c.setAttribute('aria-checked','false');c.dataset.v=v;const sm=a.getMonth()===e.getMonth();c.innerHTML=`<b>${a.getDate()}${sm?'':' '+dfmt(a,{month:'short'})} – ${e.getDate()} ${dfmt(e,{month:'short'})}</b><span>Sat – Thu · ${a.getFullYear()}</span>`;c.addEventListener('click',()=>{date.value=v;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-checked',x===c?'true':'false'));date.removeAttribute('aria-invalid');clrErr();upd()});chips.appendChild(c)});
   document.querySelectorAll('.stepper button').forEach(bt=>bt.addEventListener('click',()=>{const v=Math.min(+guests.max,Math.max(+guests.min||1,(+guests.value||1)+(+bt.dataset.step)));guests.value=v;if(who()==='me'&&v>1)document.querySelector('input[name=who][value=meplus]').checked=true;render()}));
   [date,guests,cin,nights].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd)});
   document.querySelectorAll('input[name=pkg]').forEach(r=>r.addEventListener('change',()=>{syncPkg();render()}));
@@ -919,10 +930,9 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
       if(i===0&&self&&!g.n)g.n=nameIn.value;
       const t=ids[g.t];
       h+=`<div class="guest"><h4>Guest ${i+1}${i===0&&self?' (you)':''}</h4>
-        <div class="row"><div><label for="gn${i}">Full name as on ID</label><input id="gn${i}" class="gn" value="${esc(g.n)}" autocomplete="off" required></div><div><label for="gd${i}">Date of birth</label><input id="gd${i}" class="gd" type="date" value="${esc(g.dob)}" required></div></div>
-        <div class="row"><div><label for="gt${i}">ID type</label><select id="gt${i}" class="gt" required><option value="">Choose ID type</option>${Object.entries(ids).map(([k,v])=>`<option value="${k}"${g.t===k?' selected':''}>${v.l}</option>`).join('')}</select></div>
-        <div><label for="gi${i}">ID number</label><input id="gi${i}" class="gi" value="${esc(g.id)}" placeholder="${t?t.ph:'Choose ID type first'}" autocomplete="off" required></div></div>
-        <div${g.t==='pass'?'':' hidden'}><label for="gnat${i}">Nationality</label><select id="gnat${i}" class="gnat"${g.t==='pass'?' required':''}><option value="">Choose nationality</option>${NAT.map(([c,nm])=>`<option value="${c}"${g.nat===c?' selected':''}>${nm}</option>`).join('')}</select></div></div>`;
+        <div><label for="gn${i}">Full name as on ID</label><input id="gn${i}" class="gn" value="${esc(g.n)}" autocomplete="off" required></div>
+        <div class="row r2"><div><label for="gt${i}">ID type</label><select id="gt${i}" class="gt" required><option value="">Choose ID type</option>${Object.entries(ids).map(([k,v])=>`<option value="${k}"${g.t===k?' selected':''}>${v.l}</option>`).join('')}</select></div><div><label for="gi${i}">ID number</label><input id="gi${i}" class="gi" value="${esc(g.id)}" placeholder="${t?t.ph:'Choose ID type first'}" autocomplete="off" required></div></div>
+        <div class="row r2"><div${g.t==='pass'?'':' hidden'}><label for="gnat${i}">Nationality</label><select id="gnat${i}" class="gnat"${g.t==='pass'?' required':''}><option value="">Choose nationality</option>${NAT.map(([c,nm])=>`<option value="${c}"${g.nat===c?' selected':''}>${nm}</option>`).join('')}</select></div><div><label for="gd${i}">Date of birth</label><input id="gd${i}" class="gd" type="date" value="${esc(g.dob)}" required></div></div></div>`;
     }
     glist.innerHTML=h;upd();
   };
