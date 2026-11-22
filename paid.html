@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment | Shadda</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--navy:#061c3a;--gold:#c9972b;--mute:#45556e}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--navy);background:#f4f6f9;min-height:100vh;display:flex;flex-direction:column}
+header{background:#fff;border-bottom:1px solid #e3e7ee;padding:14px 20px}
+header img{height:32px;display:block}
+main{flex:1;display:grid;place-items:center;padding:32px 16px}
+.card{background:#fff;border:1px solid #e3e7ee;border-radius:20px;padding:34px 28px;max-width:520px;width:100%;text-align:center}
+.icon{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;font-size:32px;font-weight:700}
+.ok .icon{background:#fdf3dc;color:#8a6410}
+.bad .icon{background:#fde8eb;color:#b3261e}
+h1{font-size:26px;margin:0 0 10px}
+p{color:var(--mute);margin:0 0 12px}
+.ref{font-size:13px;color:var(--mute);background:#f4f6f9;border-radius:10px;padding:10px;margin:16px 0;word-break:break-all}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:10px;background:var(--gold);color:var(--navy);font-weight:700;text-decoration:none;margin-top:8px}
+.link{display:block;margin-top:14px;color:var(--navy)}
+</style>
+</head>
+<body>
+<header><a href="/"><img src="logo.png" alt="Shadda"></a></header>
+<main><div class="card" id="card"></div></main>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),id=q.get('id')||'',st=(q.get('status')||'').toLowerCase(),msg=q.get('message')||'';
+  var b={};try{b=JSON.parse(localStorage.getItem('shadda_booking')||'{}')}catch(e){}
+  var esc=function(v){return String(v).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var c=document.getElementById('card'),paid=(st==='paid'||st==='captured'||st==='authorized');
+  var ref=id?'<div class="ref">Payment reference: '+esc(id)+'</div>':'';
+  if(paid){
+    c.className='card ok';
+    c.innerHTML='<div class="icon">&#10003;</div><h1>Thank you'+(b.name?', '+esc(b.name.split(' ')[0]):'')+'</h1>'+
+      '<p>Your payment went through'+(b.amt?': <b>SAR '+Number(b.amt).toLocaleString('en-US')+'</b>':'')+'.</p>'+
+      (b.descr?'<p>'+esc(b.descr)+'</p>':'')+
+      '<p>We will confirm your booking on WhatsApp within two working days.</p>'+ref+
+      '<a class="btn" href="/">Back to Shadda</a>';
+    try{localStorage.removeItem('shadda_booking')}catch(e){}
+  }else{
+    c.className='card bad';
+    c.innerHTML='<div class="icon">!</div><h1>Payment not completed</h1>'+
+      '<p>'+(msg?esc(msg):'Your payment did not go through, and you have not been charged.')+'</p>'+
+      '<p>You can try again with another card, or contact us on WhatsApp.</p>'+ref+
+      '<a class="btn" href="/#book">Try again</a><a class="link" href="/#contact">Contact us</a>';
+  }
+})();
+</script>
+</body>
+</html>
