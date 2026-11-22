@@ -651,37 +651,13 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
 
 <!-- BOOK -->
 <div class="page" data-page="book">
-<header class="ph"><div class="wrap"><h1>Book your place</h1><p>Choose your experience and dates, tell us who's coming, and pay online to hold your place.</p></div></header>
+<header class="ph"><div class="wrap"><h1>Book your place</h1><p>Tell us who's coming, choose your experience and dates, and pay online to hold your place.</p></div></header>
 <section class="band bk">
   <div class="wrap bkgrid">
     <form id="bform" class="bkform" novalidate>
-      <section class="bstep">
-        <div class="bhead"><span class="bnum">1</span><h2>Choose your experience</h2></div>
-        <fieldset class="pkgs" id="pkgset"><legend class="sr">Experience</legend>
-          <label class="pkc"><input type="radio" name="pkg" value="hotel" checked><span class="pkt">Shadda week with hotel</span><span class="pkp">SAR 24,375 <small>per person</small></span><span class="pkd">Six days at camp, plus a 5-star hotel night in Riyadh before and after.</span></label>
-          <label class="pkc"><input type="radio" name="pkg" value="camp"><span class="pkt">Shadda week, camp only</span><span class="pkp">SAR 22,375 <small>per person</small></span><span class="pkd">Six days at camp. Meet us at the hotel in Riyadh on Saturday morning.</span></label>
-          <label class="pkc"><input type="radio" name="pkg" value="stay"><span class="pkt">Camp stay</span><span class="pkp">SAR 4,775 <small>per bed, per night</small></span><span class="pkd">A night or more at camp between departures, with three meals, snacks and qahwa.</span></label>
-        </fieldset>
-      </section>
 
       <section class="bstep">
-        <div class="bhead"><span class="bnum">2</span><h2>Pick your dates</h2></div>
-        <div id="depwrap">
-          <p class="bnote">Every departure runs Saturday to Thursday and is confirmed once 15 guests have booked.</p>
-          <div class="chips" id="depchips" role="radiogroup" aria-label="Departure"></div>
-          <label for="date" class="sr">Departure</label><select id="date" class="sr" required tabindex="-1" aria-hidden="true"><option value="">Choose a departure</option><option value="2027-01-16">Sat 16 Jan to Thu 21 Jan 2027</option><option value="2027-01-30">Sat 30 Jan to Thu 4 Feb 2027</option><option value="2027-03-13">Sat 13 Mar to Thu 18 Mar 2027</option><option value="2027-03-27">Sat 27 Mar to Thu 1 Apr 2027</option><option value="2027-04-10">Sat 10 Apr to Thu 15 Apr 2027</option><option value="2027-04-24">Sat 24 Apr to Thu 29 Apr 2027</option></select>
-        </div>
-        <div id="staywrap" hidden>
-          <div class="row">
-            <div><label for="cin">Check-in date</label><input id="cin" type="date" required></div>
-            <div><label for="nights">Nights</label><select id="nights" required><option value="1">1 night</option><option value="2">2 nights</option><option value="3">3 nights</option><option value="4">4 nights</option><option value="5">5 nights</option><option value="6">6 nights</option><option value="7">7 nights</option></select></div>
-          </div>
-          <p class="bnote">Open all year, except Shadda departure weeks, Ramadan, July and August. You drive to the camp yourself, and we send the location.</p>
-        </div>
-      </section>
-
-      <section class="bstep">
-        <div class="bhead"><span class="bnum">3</span><h2>Who's coming</h2></div>
+        <div class="bhead"><span class="bnum">1</span><h2>Who's coming</h2></div>
         <fieldset class="whoopts"><legend class="lbl">Who is this booking for?</legend>
           <label class="whoopt"><input type="radio" name="who" value="me"><span><b>Just me</b><small>I'm travelling alone</small></span></label>
           <label class="whoopt"><input type="radio" name="who" value="meplus" checked><span><b>Me and others</b><small>I'm coming with family or friends</small></span></label>
@@ -694,16 +670,40 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
       </section>
 
       <section class="bstep">
-        <div class="bhead"><span class="bnum">4</span><h2>Your contact details</h2></div>
+        <div class="bhead"><span class="bnum">2</span><h2>Your contact details</h2></div>
         <div><label for="name">Your full name</label><input id="name" autocomplete="name" required></div>
         <div class="telw"><label for="phone">WhatsApp number</label><div class="tel"><select id="cc" aria-label="Country code"><option value="966">+966 SA</option><option value="971">+971 AE</option><option value="965">+965 KW</option><option value="974">+974 QA</option><option value="973">+973 BH</option><option value="968">+968 OM</option><option value="1">+1 US</option><option value="44">+44 GB</option><option value="49">+49 DE</option><option value="33">+33 FR</option><option value="39">+39 IT</option><option value="34">+34 ES</option><option value="31">+31 NL</option><option value="41">+41 CH</option><option value="61">+61 AU</option><option value="91">+91 IN</option><option value="92">+92 PK</option><option value="20">+20 EG</option><option value="962">+962 JO</option><option value="90">+90 TR</option><option value="86">+86 CN</option><option value="81">+81 JP</option><option value="82">+82 KR</option><option value="7">+7 RU</option><option value="">Other</option></select><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="5x xxx xxxx" required></div><p class="bnote" style="margin-top:6px">We confirm your booking on WhatsApp.</p></div>
         <div><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
       </section>
 
       <section class="bstep">
-        <div class="bhead"><span class="bnum">5</span><h2>Guest details</h2></div>
+        <div class="bhead"><span class="bnum">3</span><h2>Guest details</h2></div>
         <p class="bnote">We need each guest's ID for desert permits and insurance. Guests under 18 travel with a parent or guardian in the same booking.</p>
         <div id="glist"></div>
+      </section>
+      <section class="bstep">
+        <div class="bhead"><span class="bnum">4</span><h2>Choose your experience</h2></div>
+        <fieldset class="pkgs" id="pkgset"><legend class="sr">Experience</legend>
+          <label class="pkc"><input type="radio" name="pkg" value="hotel" checked><span class="pkt">Shadda week with hotel</span><span class="pkp">SAR 24,375 <small>per person</small></span><span class="pkd">Six days at camp, plus a 5-star hotel night in Riyadh before and after.</span></label>
+          <label class="pkc"><input type="radio" name="pkg" value="camp"><span class="pkt">Shadda week, camp only</span><span class="pkp">SAR 22,375 <small>per person</small></span><span class="pkd">Six days at camp. Meet us at the hotel in Riyadh on Saturday morning.</span></label>
+          <label class="pkc"><input type="radio" name="pkg" value="stay"><span class="pkt">Camp stay</span><span class="pkp">SAR 4,775 <small>per bed, per night</small></span><span class="pkd">A night or more at camp between departures, with three meals, snacks and qahwa.</span></label>
+        </fieldset>
+      </section>
+
+      <section class="bstep">
+        <div class="bhead"><span class="bnum">5</span><h2>Pick your dates</h2></div>
+        <div id="depwrap">
+          <p class="bnote">Every departure runs Saturday to Thursday and is confirmed once 15 guests have booked.</p>
+          <div class="chips" id="depchips" role="radiogroup" aria-label="Departure"></div>
+          <label for="date" class="sr">Departure</label><select id="date" class="sr" required tabindex="-1" aria-hidden="true"><option value="">Choose a departure</option><option value="2027-01-16">Sat 16 Jan to Thu 21 Jan 2027</option><option value="2027-01-30">Sat 30 Jan to Thu 4 Feb 2027</option><option value="2027-03-13">Sat 13 Mar to Thu 18 Mar 2027</option><option value="2027-03-27">Sat 27 Mar to Thu 1 Apr 2027</option><option value="2027-04-10">Sat 10 Apr to Thu 15 Apr 2027</option><option value="2027-04-24">Sat 24 Apr to Thu 29 Apr 2027</option></select>
+        </div>
+        <div id="staywrap" hidden>
+          <div class="row">
+            <div><label for="cin">Check-in date</label><input id="cin" type="date" required></div>
+            <div><label for="nights">Nights</label><select id="nights" required><option value="1">1 night</option><option value="2">2 nights</option><option value="3">3 nights</option><option value="4">4 nights</option><option value="5">5 nights</option><option value="6">6 nights</option><option value="7">7 nights</option></select></div>
+          </div>
+          <p class="bnote">Open all year, except Shadda departure weeks, Ramadan, July and August. You drive to the camp yourself, and we send the location.</p>
+        </div>
       </section>
 
       <section class="bstep">
