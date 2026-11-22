@@ -718,7 +718,7 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
         <div id="summary"></div>
         <div class="err" id="berr" aria-live="polite"></div>
         <button class="btn" type="submit" form="bform">Continue to payment</button>
-        <p class="sumfoot">Pay securely with mada, Visa, Mastercard or STC Pay, through Moyasar.</p>
+        <p class="sumfoot">Pay securely with Apple Pay, mada, Visa, Mastercard or STC Pay, through Moyasar.</p>
         <div class="ok" id="bok" role="status"></div>
       </div>
     </aside>
@@ -1006,7 +1006,7 @@ footer .fine{border-top:1px solid #1d3456;margin-top:36px;padding-top:20px;font-
     pm.hidden=false;if(mbar)mbar.style.display='none';
     const box=pm.querySelector('.mysr-form');box.innerHTML='';
     if(!window.Moyasar){box.innerHTML='<p class="ferr">The payment form could not load. Please check your connection and try again, or contact us on WhatsApp.</p>';return}
-    Moyasar.init({element:box,amount:amt*100,currency:'SAR',description:descr,publishable_api_key:MOYASAR_KEY,callback_url:location.origin+'/paid.html',methods:['creditcard','stcpay'],supported_networks:['mada','visa','mastercard'],language:'en',metadata:meta});
+    Moyasar.init({element:box,amount:amt*100,currency:'SAR',description:descr,publishable_api_key:MOYASAR_KEY,callback_url:location.origin+'/paid.html',methods:['applepay','creditcard','stcpay'],supported_networks:['mada','visa','mastercard'],apple_pay:{country:'SA',label:'Shadda',validate_merchant_url:'https://api.moyasar.com/v1/applepay/initiate'},language:'en',metadata:meta});
   });
   document.getElementById('pform').addEventListener('submit',e=>{
     e.preventDefault();const f=e.target,ok=document.getElementById('pok');
